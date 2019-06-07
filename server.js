@@ -5,7 +5,13 @@ const express = require('express'),
     mongoose = require('mongoose'),
     config = require('./db');
 
+// router
 const productRoute = require('./routes/product.route');
+const producerRoute = require('./routes/producer.route');
+const categoriesRoute = require('./routes/categories.route');
+const branchesRoute = require('./routes/branches.route');
+const colorsRoute = require('./routes/colors.route');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db, { useNewUrlParser: true }).then(
   () => {console.log('Database is connected') },
@@ -15,7 +21,13 @@ mongoose.connect(config.db, { useNewUrlParser: true }).then(
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+// app use router
 app.use('/products', productRoute);
+app.use('/producers', producerRoute);
+app.use('/categories', categoriesRoute);
+app.use('/branches', branchesRoute);
+app.use('/colors', colorsRoute);
+
 const port = process.env.PORT || 4000;
 
 const server = app.listen(port, function(){

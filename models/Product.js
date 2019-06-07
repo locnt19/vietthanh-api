@@ -76,7 +76,6 @@ let Product = new Schema({
     default: null
   },
   branch: {
-    // type: [branchSchema],
     type: branchSchema,
     default: null
   },
@@ -89,14 +88,6 @@ let Product = new Schema({
     default: null
   },
   details: {
-    // mainDetail: {
-    //   type: mainDetailSchema,
-    //   default: null
-    // },
-    // specifications: {
-    //   type: [specificationsSchema],
-    //   default: null
-    // }
     type: detailsSchema,
     default: null
   },
