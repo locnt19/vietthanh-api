@@ -11,6 +11,7 @@ const producerRoute = require('./routes/producer.route');
 const categoriesRoute = require('./routes/categories.route');
 const branchesRoute = require('./routes/branches.route');
 const colorsRoute = require('./routes/colors.route');
+const uploadRoute = require('./routes/upload.route');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db, { useNewUrlParser: true }).then(
@@ -27,6 +28,7 @@ app.use('/producers', producerRoute);
 app.use('/categories', categoriesRoute);
 app.use('/branches', branchesRoute);
 app.use('/colors', colorsRoute);
+app.use('/upload', uploadRoute);
 
 const port = process.env.PORT || 4000;
 
