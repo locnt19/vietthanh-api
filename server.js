@@ -3,7 +3,8 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   cors = require('cors'),
   mongoose = require('mongoose'),
-  config = require('./db');
+  config = require('./db'),
+  morgan = require('morgan');
 
 // router
 const productRoute = require('./routes/product.route');
@@ -28,6 +29,11 @@ const userRoute = require('./routes/user.route');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(morgan('dev'));
+
 // app use router
 app.use('/products', productRoute);
 app.use('/producers', producerRoute);
