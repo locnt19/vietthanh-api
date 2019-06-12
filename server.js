@@ -1,9 +1,9 @@
 const express = require('express'),
-    path = require('path'),
-    bodyParser = require('body-parser'),
-    cors = require('cors'),
-    mongoose = require('mongoose'),
-    config = require('./db');
+  path = require('path'),
+  bodyParser = require('body-parser'),
+  cors = require('cors'),
+  mongoose = require('mongoose'),
+  config = require('./db');
 
 // router
 const productRoute = require('./routes/product.route');
@@ -14,11 +14,17 @@ const colorsRoute = require('./routes/colors.route');
 const uploadRoute = require('./routes/upload.route');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.db, { useNewUrlParser: true }).then(
-  () => {console.log('Database is connected') },
-  err => { console.log('Can not connect to the database'+ err)}
+mongoose.connect(config.db, {
+  useNewUrlParser: true
+}).then(
+  () => {
+    console.log('Database is connected')
+  },
+  err => {
+    console.log('Can not connect to the database' + err)
+  }
 );
-
+const userRoute = require('./routes/user.route');
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -30,8 +36,9 @@ app.use('/branches', branchesRoute);
 app.use('/colors', colorsRoute);
 app.use('/upload', uploadRoute);
 
+app.use('/register', userRoute);
 const port = process.env.PORT || 4000;
 
-const server = app.listen(port, function(){
+const server = app.listen(port, function () {
   console.log('Listening on port ' + port);
 });
