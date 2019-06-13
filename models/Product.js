@@ -6,10 +6,6 @@ var priceSchema = new Schema({
   value: Number,
   rate: Number
 });
-var branchSchema = new Schema({
-  name: String,
-  inventory: Number
-});
 var specificationsSchema = new Schema({
   prop: String,
   detail: String
@@ -27,7 +23,6 @@ var userSchema = new Schema({
     type: Date,
     default: Date.now
   }
-
 });
 var mainDetailSchema = new Schema({
   content: {
@@ -43,6 +38,20 @@ var detailsSchema = new Schema({
   mainDetail: mainDetailSchema,
   specifications: [specificationsSchema]
 });
+var branchItemShcema = new Schema({
+  color: {
+    type: String,
+    default: null
+  },
+  branchName: {
+    type: String,
+    default: null
+  },
+  inventory: {
+    type: Number,
+    default: null
+  }
+})
 
 // Define collection and schema for Product
 let Product = new Schema({
@@ -71,12 +80,8 @@ let Product = new Schema({
     type: priceSchema,
     default: null
   },
-  color: {
-    type: String,
-    default: null
-  },
-  branch: {
-    type: branchSchema,
+  branchItem: {
+    type: [branchItemShcema],
     default: null
   },
   new: {
