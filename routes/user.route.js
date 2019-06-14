@@ -3,14 +3,15 @@ const app = express();
 const userRoutes = express.Router();
 
 // Require user model in our routes module
-let User = require('../models/User');
+const User = require('../models/User');
 
 // Defined store route
 userRoutes.route('/register').post(function (req, res) {
-  let User = new User(req.body);
-  User.save()
+  let user = new User(req.body);
+  console.log(user);
+  user.save()
     .then(user => {
-      res.status(200).json({'User': 'user in added successfully'});
+      res.status(200).json({'user': 'user in added successfully'});
     })
     .catch(err => {
     res.status(400).send("unable to save to database");
