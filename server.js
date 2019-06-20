@@ -14,6 +14,8 @@ const branchesRoute = require('./routes/branches.route');
 const colorsRoute = require('./routes/colors.route');
 const uploadRoute = require('./routes/upload.route');
 const userRoute = require('./routes/user.route');
+const menuRoute = require('./routes/menu.router');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.db, {
   useNewUrlParser: true
@@ -41,6 +43,7 @@ app.use('/categories', categoriesRoute);
 app.use('/branches', branchesRoute);
 app.use('/colors', colorsRoute);
 app.use('/upload', uploadRoute);
+app.use('/menus', menuRoute); // route ở đây phải giống biến url ở file menus.services.ts
 
 app.use('/user', userRoute);
 const port = process.env.PORT || 4000;
